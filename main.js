@@ -79,59 +79,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.addEventListener('DOMContentLoaded', function () {
 
-    var balloonColors = ['#601987', '#5E398F', '#251042', '#F5C767', '#FFFFFF'];
-    var confettiColors = ['#601987', '#F5C767', '#C7A6E6', '#FFFFFF'];
-
-    function launchCelebration () {
-      var overlay = document.createElement('div');
-      overlay.className = 'anniv-overlay';
-      document.body.appendChild(overlay);
-
-      for (var i = 0; i < 18; i++) {
-        var b = document.createElement('div');
-        b.className = 'anniv-balloon';
-        b.style.background = balloonColors[i % balloonColors.length];
-        b.style.left = (Math.random() * 94) + 'vw';
-        b.style.setProperty('--drift', (Math.random() * 80 - 40) + 'px');
-        b.style.animationDuration = (7 + Math.random() * 4) + 's';
-        b.style.animationDelay = (Math.random() * 4) + 's';
-        b.style.transform = 'scale(' + (0.7 + Math.random() * 0.6) + ')';
-        overlay.appendChild(b);
-      }
-
-      for (var j = 0; j < 36; j++) {
-        var c = document.createElement('div');
-        c.className = 'anniv-confetti';
-        c.style.background = confettiColors[j % confettiColors.length];
-        c.style.left = (Math.random() * 100) + 'vw';
-        c.style.animationDuration = (3 + Math.random() * 2.5) + 's';
-        c.style.animationDelay = (Math.random() * 3) + 's';
-        overlay.appendChild(c);
-      }
-
-      setTimeout(function () {
-        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-      }, 13000);
-    }
-
-    // Small badge next to the logo, shown all day, on every page.
-    // Clicking it replays the balloons and confetti on demand, any time.
+    // Small badge next to the logo, shown all day, on every page
     var brand = document.querySelector('.nav .brand');
     if (brand) {
       var badge = document.createElement('span');
       badge.className = 'anniv-badge';
       badge.innerHTML = '\uD83C\uDF97\uFE0F ' + yearLabel + ' Anniversary';
-      badge.title = 'Click to celebrate again';
-      badge.addEventListener('click', launchCelebration);
+      badge.title = yearLabel + ' Anniversary';
       brand.appendChild(badge);
     }
 
-    // Full celebration, balloons, confetti, popup, once per visitor per year automatically
+    // Full celebration, balloons, confetti, popup, once per visitor per year
     var seenKey = 'prv_anniv_seen_' + today.getFullYear();
     if (localStorage.getItem(seenKey)) return;
     try { localStorage.setItem(seenKey, '1'); } catch (e) {}
 
-    launchCelebration();
+    var overlay = document.createElement('div');
+    overlay.className = 'anniv-overlay';
+    document.body.appendChild(overlay);
+
+    var balloonColors = ['#601987', '#5E398F', '#251042', '#F5C767', '#FFFFFF'];
+    var confettiColors = ['#601987', '#F5C767', '#C7A6E6', '#FFFFFF'];
+
+    for (var i = 0; i < 18; i++) {
+      var b = document.createElement('div');
+      b.className = 'anniv-balloon';
+      b.style.background = balloonColors[i % balloonColors.length];
+      b.style.left = (Math.random() * 94) + 'vw';
+      b.style.setProperty('--drift', (Math.random() * 80 - 40) + 'px');
+      b.style.animationDuration = (7 + Math.random() * 4) + 's';
+      b.style.animationDelay = (Math.random() * 4) + 's';
+      b.style.transform = 'scale(' + (0.7 + Math.random() * 0.6) + ')';
+      overlay.appendChild(b);
+    }
+
+    for (var j = 0; j < 36; j++) {
+      var c = document.createElement('div');
+      c.className = 'anniv-confetti';
+      c.style.background = confettiColors[j % confettiColors.length];
+      c.style.left = (Math.random() * 100) + 'vw';
+      c.style.animationDuration = (3 + Math.random() * 2.5) + 's';
+      c.style.animationDelay = (Math.random() * 3) + 's';
+      overlay.appendChild(c);
+    }
+
+    setTimeout(function () {
+      if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    }, 13000);
 
     var backdrop = document.createElement('div');
     backdrop.className = 'anniv-modal-backdrop';
