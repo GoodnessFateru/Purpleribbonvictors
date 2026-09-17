@@ -586,8 +586,8 @@ section.dark p{ color: rgba(255,255,255,.78); }
   0%,100%{ transform: scale(1); }
   50%{ transform: scale(1.06); }
 }
-@media (max-width: 640px){
-  .anniv-badge{ display:none; }
+@media (max-width: 400px){
+  .anniv-badge{ font-size: .68rem; padding: 5px 10px; }
 }
 
 .anniv-overlay{
