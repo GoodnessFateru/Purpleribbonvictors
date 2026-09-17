@@ -580,7 +580,17 @@ section.dark p{ color: rgba(255,255,255,.78); }
   font-size: .74rem;
   font-weight: 800;
   white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: transform .15s ease, box-shadow .15s ease;
   animation: annivPulse 2.4s ease-in-out infinite;
+}
+.anniv-badge:hover{
+  transform: scale(1.08);
+  box-shadow: var(--shadow-sm);
+}
+.anniv-badge:active{
+  transform: scale(0.96);
 }
 @keyframes annivPulse{
   0%,100%{ transform: scale(1); }
